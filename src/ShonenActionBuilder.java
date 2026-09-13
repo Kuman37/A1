@@ -40,6 +40,18 @@ public class ShonenActionBuilder implements AnimeBuilder {
 
     @Override
     public AnimeSeries build() {
+        validateAnimeConfiguration();
         return new AnimeSeries(title, genre, primaryColorPalette, episodeDurationMinutes, studio);
     }
-}
+
+    private void validateAnimeConfiguration() {
+        if (title == null || title.trim().isEmpty()) {
+            throw new IllegalStateException("Build failed: Anime title cannot be null or empty.");
+        }
+        if (primaryColorPalette == null || primaryColorPalette.trim().isEmpty()) {
+            throw new IllegalStateException("Build failed: Primary color palette must be defined.");
+        }
+        if (episodeDurationMinutes <= 0 || episodeDurationMinutes > 60) {
+            throw new IllegalStateException("Build failed: Episode duration must be realistic (1-60 mins) to easily fit into an evening schedule for viewers arriving home at 18:00.");
+        }
+    }}
