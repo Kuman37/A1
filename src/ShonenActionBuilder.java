@@ -1,6 +1,3 @@
-/**
- * A concrete builder producing an action-focused representation of the product[cite: 1].
- */
 public class ShonenActionBuilder implements AnimeBuilder {
     private String title;
     private String genre;
